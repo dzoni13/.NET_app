@@ -1,0 +1,115 @@
+﻿@using System.Data
+@using System.Data.SqlClient
+@model IEnumerable<IdeaTrading.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<content id="setCen" class="card m-5 ">
+    <div class="card-header">
+        <div class="card-body">
+            <div>
+                <button type="button" class="btn btn-primary btnInsert">
+                    @Html.ActionLink("Add New Record", "Insert", "User", new { @class = "linkInsert" })
+                </button>
+                <table border="1" class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <td>
+                                First Name
+                            </td>
+                            <td>
+                                Last Name
+                            </td>
+                            <td>
+                                Address
+                            </td>
+                            <td>
+                                City
+                            </td>
+                            <td>
+                                DateOfEmployment
+                            </td>
+                            <td>
+                                Position
+                            </td>
+                            <td>
+                                Phone
+                            </td>
+                        </tr>
+                    </thead>
+                    @foreach (var dr in Model)
+                    {
+                        <tr>
+                            <td> @Html.DisplayFor(item => dr.FirstName) </td>
+                            <td> @Html.DisplayFor(item => dr.LastName) </td>
+                            <td> @Html.DisplayFor(item => dr.Address) </td>
+                            <td> @Html.DisplayFor(item => dr.City) </td>
+                             @if (Convert.ToDateTime(dr.DateOfEmployment).ToString("dd/MM/yyyy") != "01.01.0001")
+                             {
+                                <td> @Convert.ToDateTime(dr.DateOfEmployment).ToString("dd/MM/yyyy") </td>
+                             }
+                             else
+                             {
+                                <td></td>
+                             }
+                            <td> @Html.DisplayFor(item => dr.Position) </td>
+                            <td> @Html.DisplayFor(item => dr.Phone) </td>
+
+
+                            <td><button type="button" class="btn btn-success btnEdit">@Html.ActionLink("Edit ", "Edit", new { id = dr.Id }, new { @class = "btnCol" })</button></td>  
+                            <td><button type="button" class="btn btn-danger ">@Html.ActionLink("Delete", "Delete", new { id = dr.Id }, new { @class = "btnCol" })</button></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div>
+                <button id="buttonClick" type="button" class="btn btn-info">City button</button>
+
+
+            </div>
+            <div class="card-footer secTabl" >
+                <table id="table" class="table table-dark"> </table>
+                
+            </div>
+        </div>
+    </div>
+</content>
+@section Scripts {
+    <script language="javascript" type="text/javascript">
+        $('#buttonClick').click(function () {
+
+           $.ajax({
+               url: '@Url.Action("Cities", "User")',
+               type: 'GET',
+               success: function (data) {
+                   var tableBody = document.getElementById('table');
+                   while (tableBody.firstChild) {
+                       tableBody.removeChild(tableBody.lastChild);
+                   }
+
+                   var cities = JSON.parse(data);
+
+                   for (var i = 0; i < cities.length; i++) {
+                       var tr = document.createElement('TR');
+                       tableBody.appendChild(tr);
+
+                       var td = document.createElement('TD');
+                       td.appendChild(document.createTextNode(cities[i].name));
+                       tr.appendChild(td);
+                       var td1 = document.createElement('TD');
+                       td1.appendChild(document.createTextNode(cities[i].count));
+                       tr.appendChild(td1);
+                   }
+
+               }
+           });
+
+
+        });
+    </script>
+}
+

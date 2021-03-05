@@ -1,0 +1,85 @@
+﻿/*****************************************BODY******************************/
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+/*****************************************HEADER****************************/
+header {
+    background-color: black;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+/***************************************TABLE CARD**************************/
+
+.appNameCont {
+    padding: 14px;
+}
+
+.appName {
+    color: white;
+}
+
+.appName:hover {
+    color: white;
+    text-decoration:none
+}
+
+#setCen {
+    margin-top: 13rem !important;
+    box-shadow: 0px 0px 20px 4px;
+    background-color: #eaeaea;
+}
+
+.btnInsert {
+    margin-bottom: 5px;
+}
+
+.linkInsert {
+    color: white;
+
+}
+
+.secTabl {
+    border: none;
+    background-color: #fff0;
+    width: 500px;
+}
+
+/*******************************BUTTONS EDIT AND DELETE********************/
+.btnEdit {
+    color: #fff;
+    padding-left: 21px;
+    padding-right: 21px;
+}
+
+.btnCol {
+    color: #fff;
+}
+
+/************************************FORM**********************************/
+
+.formBody{
+    margin: 3rem;
+}
+
+.addresForm{
+    padding-left: 0;
+}
+
+.formFeald {
+    padding-left: 0;
+}
+
+/**********************************FOOTER**********************************/
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: black;
+    width: 100%;
+    color: white;
+    padding-top: 11px;
+    padding-left: 15px;
+}
